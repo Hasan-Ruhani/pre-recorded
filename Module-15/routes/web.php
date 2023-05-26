@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
     // Route::get('/login', [DemoController::class, 'login']);                                                 //no 22
 
 Route::middleware(['demo']) -> group(function(){                                                   //no 23
-    Route::get('/hello', [DemoController::class, "DemoAction"]);     //no 21
+    Route::get('/hello', [DemoController::class, 'DemoAction']);     //no 21
     Route::get('/admin/{auth?}', [DemoController::class, 'admin']);  //no 22
     Route::get('/login', [DemoController::class, 'login']);          //no 22
 });
