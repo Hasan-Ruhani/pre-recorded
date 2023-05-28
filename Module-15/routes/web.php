@@ -4,6 +4,7 @@ use App\Http\Controllers\DemoController;
 use App\Http\Middleware\DemoMiddleware;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
