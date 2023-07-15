@@ -18,3 +18,8 @@ Route::get('/', function () {
 });
 
 Route::post('/create-brand', [demoController::class, 'demoAction']);
+Route::post('/update-brand/{id}', [demoController::class, 'demoAction']);
+Route::post('/create-update-brand/{brandName}', [demoController::class, 'demoAction']);
+Route::get('/delete/{id}', [demoController::class, 'demoAction']);
+Route::get('/find', [demoController::class, 'demoAction']);
+Route::get('/find-column', [demoController::class, 'demoAction']);
