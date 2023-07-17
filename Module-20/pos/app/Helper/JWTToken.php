@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Helper;
+use Firebase\JWT\JWT;
+use Firebase\JWT\key;
+use Exception;
+
+class JWTToken{
+
+    function CreateToken($userEmail):string{            // "$userEmail" current user email address for the identity 
+        $key = env('JWT_KEY');                          // set jwt token that we call .env file
+
+        $payload = [                                    // what data we teken the 'JWT_KEY' that set under the $payload
+            'iss' => 'laravel-token',                   // 'iss' means token issue and his name laravel-token
+            'iat' => time(),                            // 'iat' means token creaton time
+            'exp' => time()+60*60,                      // 'exp' means token expiration time
+            'userEmail' => $userEmail                   // for the identity purpose which user currently login this site
+        ];
+
+        //....................................encode jwt token
+        JWT::encode($payload, $key, 'HS256');           //'HS256' best algorithm for laravel site
+    }
+
+    //.................................decode token
+    function VeriFyToken($token){
+
+        try{
+            $decode = JWT::docode($token, new key($key, 'HS256'));      // here[
+                                                                        //  $token = which token we decode
+                                                                        //  $key = (secret key) thats key we do encode and decode
+                                                                        //  HS256 = encription algorithm
+                                                                        // ]
+            return $decode->userEmail;      // send decoded key current user email
+        }
+        catch(Exception $e){
+            return 'unauthorized';
+        }
+        
+    }
+}
