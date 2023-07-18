@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helper\JWTToken;
 use Exception;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OTPMail;
 
 class UserController extends Controller
 {
@@ -62,13 +64,66 @@ class UserController extends Controller
         $count = User::where('email', '=', $email)->count();    // matching user email
 
         if($count == 1){
-            //
+            //...............send otp to user email
+            Mail::to($email)->send(new OTPMail($otp));   // OTPMail location: resource/view/email/OTPMail.blade.php
+                                                         // $email - user email
+            User::where('email', '=', $email)->update(['otp'=>$otp]);  // update your database otp field
+
+            return response()->json([
+                'status' => 'success',
+                'message' => '4 digit OTP code has been send to your email'
+            ]);
         }
 
         else{
             return response()->json([
                 'status' => 'failed',
                 'message' => 'unauthorized'
+            ]);
+        }
+    }
+
+    function verifyOTP(Request $request){
+        $email = $request -> input('email');    // get email from user
+        $otp = $request -> input('otp');        // get otp code from user
+
+        $count = User::where('email', '=', $email)              // matching email and otp code that get by user
+        -> where('otp', '=', $otp) -> count();
+
+        if($count == 1){
+            User::where('email', '=', $email)->update(['otp' => '0']);
+
+            $token = JWTToken::CreateTokenForSetPassword($request->input('email'));    // we recive jwt token from JWTToken.php file
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User Verification Successful',
+                'token' => $token
+            ]);
+        }
+        else{
+            return response() -> json([
+                'status' => 'faield',
+                'message' => 'wrong otp code'
+            ]);
+        }
+
+    }
+
+    function ResetPassword(Request $request){
+        try{
+            $email = $request -> header('email');                 // recived email from decoded token
+            $password = $request -> input('password');            // recived password from user
+            User::where('email', '=', $email)->update(['password' => $password]);     // set new password
+                                                                                  // 'email', '=', $email meains user email vs decoded email 
+            return response()->json([
+                'status' => 'success',
+                'messalge' => 'Password reset successful!'
+            ]);
+        }
+        catch(Exception $exception){
+            return response()->json([
+                'status' => 'failed',
+                'messalge' => 'Somthing went wrong'
             ]);
         }
     }
