@@ -21,8 +21,22 @@ class JWTToken{
         return JWT::encode($payload, $key, 'HS256');           //'HS256' best algorithm for laravel site
     }
 
-    //.................................decode token
-    public static function VeriFyToken($token):string {
+
+    public static function CreateTokenForSetPassword($userEmail):string {            // "$userEmail" current user email address for the identity 
+        $key = env('JWT_KEY');                          // set jwt token that we call .env file
+
+        $payload = [                                    // what data we teken the 'JWT_KEY' that set under the $payload
+            'iss' => 'laravel-token',                   // 'iss' means token issue and his name laravel-token
+            'iat' => time(),                            // 'iat' means token creaton time
+            'exp' => time()+60*20,                      // 'exp' means token expiration time
+            'userEmail' => $userEmail                   // for the identity purpose which user currently login this site
+        ];
+
+        //....................................encode jwt token
+        return JWT::encode($payload, $key, 'HS256');           //'HS256' best algorithm for laravel site
+    }
+    
+    public static function VeriFyToken($token):string {            // decode token
 
         try{
             $key = env('JWT_KEY');
