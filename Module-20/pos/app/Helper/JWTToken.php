@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Helper;
-use Firebase\JWT\JWT;
 use Firebase\JWT\key;
+use Firebase\JWT\JWT;
 use Exception;
 
 class JWTToken{
 
-    function CreateToken($userEmail):string{            // "$userEmail" current user email address for the identity 
+    public static function CreateToken($userEmail):string {            // "$userEmail" current user email address for the identity 
         $key = env('JWT_KEY');                          // set jwt token that we call .env file
 
         $payload = [                                    // what data we teken the 'JWT_KEY' that set under the $payload
@@ -18,14 +18,15 @@ class JWTToken{
         ];
 
         //....................................encode jwt token
-        JWT::encode($payload, $key, 'HS256');           //'HS256' best algorithm for laravel site
+        return JWT::encode($payload, $key, 'HS256');           //'HS256' best algorithm for laravel site
     }
 
     //.................................decode token
-    function VeriFyToken($token){
+    public static function VeriFyToken($token):string {
 
         try{
-            $decode = JWT::docode($token, new key($key, 'HS256'));      // here[
+            $key = env('JWT_KEY');
+            $decode = JWT::decode($token, new key($key, 'HS256'));      // here[
                                                                         //  $token = which token we decode
                                                                         //  $key = (secret key) thats key we do encode and decode
                                                                         //  HS256 = encription algorithm
