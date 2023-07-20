@@ -8,9 +8,32 @@ use App\Helper\JWTToken;
 use Exception;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OTPMail;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    //................................frontend
+    function LoginPage():View{
+        return view('pages.auth.login-page');
+    }
+
+    function RegistrationPage():View{
+        return view('pages.auth.registration-page');
+    }
+
+    function SendOtpPage(): View{
+        return view('pages.auth.send-otp-page');
+    }
+
+    function VerifyOTPPage(): View{
+        return view('pages.auth.verify-otp-page');
+    }
+
+    function ResetPasswordPage(): View{
+        return view('pages.auth.verify-otp-page');
+    }
+
+//........................backend
     function UserRegistration(Request $request){
         try{
             User::create([
@@ -44,9 +67,8 @@ class UserController extends Controller
             $token = JWTToken::createToken($request->input('email'));    // we recive jwt token from JWTToken.php file
             return response()->json([
                 'status' => 'success',
-                'message' => 'User Login Successful',
-                'token' => $token
-            ]);
+                'message' => 'User Login Successful'
+            ]) -> cookie('token', $token, 60*24*30);      // set token to cookie and set their validity time
         }
 
         else{
