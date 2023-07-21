@@ -16,6 +16,7 @@
 </div>
 
 <script>
+
    async function VerifyEmail() {
         let email = document.getElementById('email').value;
         if(email.length === 0){
@@ -27,7 +28,7 @@
             hideLoader();
             if(res.status===200 && res.data['status']==='success'){
                 successToast(res.data['message'])
-                sessionStorage.setItem('email', email);
+                sessionStorage.setItem('email', email);       // get email address for veirfy otp from session
                 setTimeout(function (){
                     window.location.href = '/verifyOtp';
                 }, 1000)
@@ -36,6 +37,5 @@
                 errorToast(res.data['message'])
             }
         }
-
     }
 </script>

@@ -30,7 +30,7 @@ class UserController extends Controller
     }
 
     function ResetPasswordPage(): View{
-        return view('pages.auth.verify-otp-page');
+        return view('pages.auth.reset-pass-page');
     }
 
 //........................backend
@@ -118,9 +118,8 @@ class UserController extends Controller
             $token = JWTToken::CreateTokenForSetPassword($request->input('email'));    // we recive jwt token from JWTToken.php file
             return response()->json([
                 'status' => 'success',
-                'message' => 'User Verification Successful',
-                'token' => $token
-            ]);
+                'message' => 'User Verification Successful'
+            ], 200) -> cookie('token', $token, 60*24*30);          // token set to cookie
         }
         else{
             return response() -> json([

@@ -24,13 +24,13 @@
             showLoader();
             let res=await axios.post('/verify-otp', {
                 otp: otp,
-                email:sessionStorage.getItem('email')
+                email:sessionStorage.getItem('email')                  // get email from session storage that we set 'send-otp-form.blade.php'
             })
             hideLoader();
 
             if(res.status===200 && res.data['status']==='success'){
                 successToast(res.data['message'])
-                sessionStorage.clear();
+                sessionStorage.clear();                                  // when email to otp verify complete then session clear for email
                 setTimeout(() => {
                     window.location.href='/resetPassword'
                 }, 1000);

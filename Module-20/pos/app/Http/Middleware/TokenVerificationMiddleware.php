@@ -16,7 +16,7 @@ class TokenVerificationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = $request->header('token');                    // recived $token from header method
+        $token = $request->cookie('token');                    // recived $token from header method
         $result = JWTToken::VerifyToken($token);               // pass $token form JWTToken mehod that we created JWTToken names
 
         if($result == 'unauthorized'){
