@@ -16,11 +16,11 @@ class OTPMail extends Mailable
     /**
      * Create a new message instance.
      */
+    public $otp;
 
-     public $otp;
     public function __construct($otp)
     {
-        $this->otp = $otp;               //set OTP code that you show your user blade view file
+        $this->otp=$otp;
     }
 
     /**
@@ -39,7 +39,7 @@ class OTPMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.OTPMail',           //set your blade view file
+            view: 'email.OTPMail',
         );
     }
 
