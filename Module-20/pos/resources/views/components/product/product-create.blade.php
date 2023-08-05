@@ -58,42 +58,62 @@
 
 
     async function Save() {
-        let productCategory = document.getElemetnById('productCategory').value;
-        let productName = document.getElemetnById('productName').value;
-        let productPrice = document.getElemetnById('productPrice').value;
-        let productUnit = document.getElemetnById('productUnit').value;
-        let productImg = document.getElemetnById('productImg').files[0];
-    }
+        let productCategory = document.getElementById('productCategory').value;
+        let productName = document.getElementById('productName').value;
+        let productPrice = document.getElementById('productPrice').value;
+        let productUnit = document.getElementById('productUnit').value;
+        let productImg = document.getElementById('productImg').files[0];
 
-    if(productCategory.length === 0){
-        errorToast("Category Required");
-    }
+        if(productCategory.length === 0){
+            errorToast("Category Required");
+        }
 
-    else if(productName.length === 0){
-        errorToast("Name Required");
-    }
+        else if(productName.length === 0){
+            errorToast("Name Required");
+        }
 
-    else if(productPrice.length === 0){
-        errorToast("Price Required");
-    }
+        else if(productPrice.length === 0){
+            errorToast("Price Required");
+        }
 
-    else if(productUnit.length === 0){
-        errorToast("Unit Required");
-    }
-    
-    else if(!productImg){
-        errorToast("Image Required");
-    }
-
-    else{
+        else if(productUnit.length === 0){
+            errorToast("Unit Required");
+        }
         
-        document.getElemetnById('modal-close').click();
+        else if(!productImg){
+            errorToast("Image Required");
+        }
 
-        let formData = new formData();
-        formData.append('img', productImg);
-        formData.append('name', productName);
-        formData.append('price', productPrice);
-        formData.append('unit', productUnit);
-        formData.append('category_id', productCategory);
+
+        else{
+            
+            document.getElementById('modal-close').click();
+
+            let formData = new FormData();
+            formData.append('img', productImg);
+            formData.append('name', productName);
+            formData.append('price', productPrice);
+            formData.append('unit', productUnit);
+            formData.append('category_id', productCategory);
+
+            const config = {          // when transfer a file then its code must 
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            }
+
+            showLoader();
+            let res = await axios.post("/create-product", formData, config);
+            hideLoader();
+
+            if(res.status === 201){
+                successToast('New Product Added');
+                document.getElementById("save-form").reset();
+                await getList();
+            }
+            else{
+                errorToast("Request Fail !");
+            }
+        }
     }
 </script>
