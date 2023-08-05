@@ -46,6 +46,54 @@
 
 <script>
 
+    FillCategoryDropDown();
+
+    async function FillCategoryDropDown() {
+        let res = await axios.get("/list-category");
+        res.data.forEach(function(item, i){
+            let option = `<option value="${item['id']}">${item['name']}</option>`
+            $("#productCategory").append(option);
+        });
+    }
 
 
+    async function Save() {
+        let productCategory = document.getElemetnById('productCategory').value;
+        let productName = document.getElemetnById('productName').value;
+        let productPrice = document.getElemetnById('productPrice').value;
+        let productUnit = document.getElemetnById('productUnit').value;
+        let productImg = document.getElemetnById('productImg').files[0];
+    }
+
+    if(productCategory.length === 0){
+        errorToast("Category Required");
+    }
+
+    else if(productName.length === 0){
+        errorToast("Name Required");
+    }
+
+    else if(productPrice.length === 0){
+        errorToast("Price Required");
+    }
+
+    else if(productUnit.length === 0){
+        errorToast("Unit Required");
+    }
+    
+    else if(!productImg){
+        errorToast("Image Required");
+    }
+
+    else{
+        
+        document.getElemetnById('modal-close').click();
+
+        let formData = new formData();
+        formData.append('img', productImg);
+        formData.append('name', productName);
+        formData.append('price', productPrice);
+        formData.append('unit', productUnit);
+        formData.append('category_id', productCategory);
+    }
 </script>
