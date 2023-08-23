@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-
             $table->string('total', 50);
             $table->string('discount', 50);
             $table->string('vat', 50);

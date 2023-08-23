@@ -12,10 +12,6 @@ class Invoice extends Model
     protected $fillable = ['total', 'discount', 'vat', 'payable', 'user_id', 'customer_id'];
 
     function customer():BelongsTo{
-        return $this -> belongsTo(Customer::class);
-    }
-
-    function invoice_product():HasMany{
-        return $this -> hasMany(InvoiceProduct::class);
+        return $this->belongsTo(Customer::class);
     }
 }
