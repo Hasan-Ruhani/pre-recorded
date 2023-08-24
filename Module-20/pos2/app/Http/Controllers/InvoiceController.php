@@ -16,14 +16,13 @@ class InvoiceController extends Controller
     function InvoicePage():View{
         return view('pages.dashboard.invoice-page');
     }
-    
 
     function SalePage():View{
         return view('pages.dashboard.sale-page');
     }
 
     function invoiceCreate(Request $request){
-        
+
         DB::beginTransaction();
 
         try {
@@ -108,5 +107,3 @@ class InvoiceController extends Controller
         }
     }
 }
-
-
