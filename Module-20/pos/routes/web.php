@@ -49,7 +49,7 @@ Route::get('/categoryPage',[CategoryController::class,'CategoryPage'])->middlewa
 Route::get('/customerPage',[CustomerController::class,'CustomerPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/productPage',[ProductController::class,'ProductPage'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/invoicePage', [InvoiceController::class, 'InvoicePage'])->middleware([TokenVerificationMiddleware::class]);
-Route::get('/salePage', [SlaePage::class, 'InvoicePage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/salePage', [InvoiceController::class, 'SalePage'])->middleware([TokenVerificationMiddleware::class]);
 
 
 
@@ -80,7 +80,7 @@ Route::post('/product-by-id', [ProductController::class, 'ProductByID'])->middle
 Route::post('/invoice-create', [InvoiceController::class, 'invoiceCreate'])->middleware([TokenVerificationMiddleware::class]);
 Route::get('/invoice-select', [InvoiceController::class, 'invoiceSelect'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/invoice-detail', [InvoiceController::class, 'InvoiceDetails'])->middleware([TokenVerificationMiddleware::class]);
-Route::get('/invoice-delete', [InvoiceController::class, 'InvoiceDelete'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/invoice-delete', [InvoiceController::class, 'InvoiceDelete'])->middleware([TokenVerificationMiddleware::class]);
 
 
 
