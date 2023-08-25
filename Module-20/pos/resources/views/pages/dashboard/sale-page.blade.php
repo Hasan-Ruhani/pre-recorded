@@ -129,7 +129,38 @@
 
     <script>
 
-        
+        async function CustomerList() {
+            let res = await axios.get("/list-customer");
+            let customerList = $("#customerList");
+            let customerTable = $("#customerTable");
+            customerTable.DataTable().destroy();
+            customerList.empty();
+
+            res.data.forEach(function (item,index){
+                let row=`<tr class="text-xs">
+                        <td><i class="bi bi-person"></i> ${item['name']}</td>
+                        <td><a data-name="${item['name']}" data-email="${item['email']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xxs px-2 py-1  btn-sm m-0">Add</a></td>
+                     </tr>`
+                     customerList.append(row);
+            });
+            
+            $('.addCustomer').on('click', async function () {
+               let CName = $(this).data('name');
+               let CEmail = $(this).data('email');
+               let CId = $(this).data('id'); 
+
+               $("#CName").text(CName);
+               $("#CEmail").text(CEmail);
+               $("#CId").text(CId);
+            });
+
+            new DataTable('#customerTable',{
+                order:[[0,'desc']],
+                scrollCollapse: false,
+                info: false
+                lengthChange: false
+]            });
+        }
 
     </script>
 
@@ -195,7 +226,7 @@
             })
 
              if(discountPercentage===0){
-                 Vat= ((Total*5)/100).toFixed(2);
+                 Vat= ((Total*5)/100).+'xed(2);
              }
              else {
                  Discount=((Total*discountPercentage)/100).toFixed(2);
