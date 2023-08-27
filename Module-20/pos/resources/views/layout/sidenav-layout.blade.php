@@ -95,6 +95,11 @@
 
     <a href="{{url("/salePage")}}" class="side-bar-item">
         <i class="fa fa-chevron-circle-right  text-dark"></i>
+        <span class="side-bar-item-caption">Create Sale</span>
+    </a>
+    
+    <a href="{{url("/invoicePage")}}" class="side-bar-item">
+        <i class="fa fa-chevron-circle-right  text-dark"></i>
         <span class="side-bar-item-caption">Invoice</span>
     </a>
 
