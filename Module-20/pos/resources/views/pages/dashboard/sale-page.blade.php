@@ -129,175 +129,6 @@
 
     <script>
 
-    (async ()=>{
-        showLoader();
-        await  CustomerList();
-        await ProductList();
-        hideLoader();
-    })
-
-    let InvoiceItemList[];
-
-    function ShowInvoiceItem(){
-        let invoiceList = $("#invoiceList");
-        invoiceList.empty();
-
-        InvoiceItemList.data.forEach(function (item, index){
-            let row = `<tr class="text-xs">
-                            <td ${item['product_name']}></td>
-                            <td ${item['qty']}></td>
-                            <td ${item['sale_price']}></td>
-                            <td><a data-index="${index}" class="btn remove text-xxs px-2 py-1 btn-sm m-0">Remove</a></td>
-                        </tr>`
-                        invoiceList.append(row);
-        });
-
-        CalculateGrandTotal();
-
-        (.remove).on('click', async function (){
-            let index = $(this).data('index');
-            removeItem(index);
-        });
-
-        function removeItem(index){
-            InvoiceItemList.splice(index, 1);   // splice mean data remove meybe!!
-            ShowInvoiceItem();
-        }
-    }
-
-    function CalculateGrandTotal(){
-        let Total=0;
-        let Vat=0;
-        let Payable=0;
-        Let Discount=0;
-        let discountPercentage=(parseFloat(document.getElementById('discountP').value));
-
-        InvoiceItemList.forEach((item, index) => {
-            Total=Total+parseFloat(item['sale_price']);
-        });
-
-        if(discountPercentage === 0){
-            Vat = ((Total * 5)/100).toFixed(2);
-        }
-        else{
-            Discount=(Total * discountPercentage) / 100;
-            Total = (Total - ((Total * discountPercentage) / 100)).toFixed(2);
-            Vat = ((Total * 5) / 100).toFixed(2);
-        }
-
-        Payable = (parseFloat(Total) + parseFloat(Vat)).toFixed(2);
-
-        document.getElementById('total').innerText = Total;
-        document.getElementById('payable').innerText = Payable;
-        document.getElementById('vat').innerText = Vat;
-        document.getElementById('discount').innerText = Discount;
-    }
-
-    function add(){
-        let PId = document.getElementById(PId).value;
-        let PName = document.getElementById(PName).value;
-        let PPrice = document.getElementById(PPrice).value;
-        let PQty = document.getElementById(PQty).value;
-
-        let TotalPrice = (parseFloat(PPrice) * parseFloat(PQty)).toFixed(2); // calculate total price
-
-        if(PId.length === 0){
-            errorToast("Product ID is required");
-        }
-        else if(PName.length === 0){
-            errorToast("Product Name is required")
-        }
-        else if(PPrice.length === 0){
-            errorToast("Product Price is required");
-        }
-        else if(PQty.length === 0){
-            errorToast("Product Quantity is required");
-        }
-
-        else{
-            let item = {product_name:PName, product_id:PId, sale_price:PPrice, qty:PQty}
-            InvoiceItemList.push('item');
-            console.log(InvoiceItemList);
-            $("#create-modal").modal('hide');
-            ShowInvoiceItem();
-        }
-    }
-
-    function addModal(id, name, price){
-        document.getElementById('PId').value=id;
-        document.getElementById('PName').value=name;
-        document.getElementById('PPrice').vleue=price;
-        $("#create-modal").modal(show);
-    }
-
-    async function CustomerList() {
-        let res = await axios.get("/list-customer");
-        let customerList = $("#customerList");
-        let customerTable = $("#customerTable");
-        customerTable.DataTable().destroy();
-        customerList.empty();
-
-        res.data.forEach(function (item,index){
-            let row=`<tr class="text-xs">
-                    <td><i class="bi bi-person"></i> ${item['name']}</td>
-                    <td><a data-name="${item['name']}" data-email="${item['email']}" data-id="${item['id']}" class="btn btn-outline-dark addCustomer  text-xxs px-2 py-1  btn-sm m-0">Add</a></td>
-                    </tr>`
-                    customerList.append(row);
-        });
-        
-        $('.addCustomer').on('click', async function () {
-            let CName = $(this).data('name');
-            let CEmail = $(this).data('email');
-            let CId = $(this).data('id'); 
-
-            $("#CName").text(CName);
-            $("#CEmail").text(CEmail);
-            $("#CId").text(CId);
-        });
-
-        new DataTable('#customerTable',{
-            order:[[0,'desc']],
-            scrollCollapse: false,
-            info: false
-            lengthChange: false
-        });
-    }
-
-
-    async function ProductList(){
-        let res = await axios.get("/list-product");
-        let productTable = $("#productTable");
-        let productList = $("#productList");
-        productTable.DataTable().destroy();
-        productList.empty();
-
-        res.data.forEach(function (item, index){
-            let row=`<tr class="text-xs">
-                    <td> <img class="w-10" src="${item['img_url']}"/> ${item['name']} ($ ${item['price']})</td>
-                    <td><a data-name="${item['name']}" data-price="${item['price']}" data-id="${item['id']}" class="btn btn-outline-dark text-xxs px-2 py-1 addProduct  btn-sm m-0">Add</a></td>
-                    </tr>`
-            productList.append(row)
-        });
-        (.addProduct).on('click', async function() {
-            let PName = $(this).data('name');
-            let PPrice = $(this).data('price')
-            let PId = $(this).data('id');
-            addModal(PName, PPrice, PId);
-        });
-
-        new DataTable('#productTable', {
-            order:[[0, 'desc']],
-            scrollCollapse: false,
-            info: false,
-            lengthChange: false
-        });
-    }
-
-    </script>
-
-{{-- 
-    <script>
-
 
         (async ()=>{
           showLoader();
@@ -357,7 +188,7 @@
             })
 
              if(discountPercentage===0){
-                 Vat= ((Total*5)/100).+'xed(2);
+                 Vat= ((Total*5)/100).toFixed(2);
              }
              else {
                  Discount=((Total*discountPercentage)/100).toFixed(2);
@@ -525,8 +356,6 @@
         }
 
     </script>
- --}}
-
 
 
 @endsection
