@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sslcommerz_accounts', function (Blueprint $table) {
-            
+            $table->id();
+            $table->string('store_id');
+            $table->string('store_passwd');
+            $table->string('currency');
+            $table->string('success_url');
+            $table->string('fail_url');
+            $table->string('cancel_url');
+            $table->string('ipn_url');
+            $table->string('init_url');
+            $table->timestamps();
         });
     }
 
