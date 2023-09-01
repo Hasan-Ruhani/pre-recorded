@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\ResponseHelper;
-use App\Models\ProducSlider;
+use App\Models\ProductSlider;
 use App\Models\Product;
 use App\Models\ProductDetails;
 use App\Models\ProductReview;
@@ -23,12 +23,12 @@ class ProductController extends Controller
     }
 
     public function ListProductByBrand(Request $request): JsonResponse{
-        $data = Product::where('brand_id', $request->brand_id)->with('brand', 'category')->get();
+        $data = Product::where('brand_id', $request->id)->with('brand', 'category')->get();
         return ResponseHelper::Out('success', $data, 200);
     }
 
     public function ListProductSlider(Request $request): JsonResponse{
-        $data = ProducSlider::all();
+        $data = ProductSlider::all();
         return ResponseHelper::Out('success', $data, 200);
     }
 

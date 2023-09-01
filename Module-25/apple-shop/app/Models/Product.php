@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     public function brand(): BelongsTo{
-        return $this->belongsTo(Brnad::class);
+        return $this->belongsTo(Brand::class);
     }
     public function category(): BelongsTo{
         return $this->belongsTo(Category::class);
