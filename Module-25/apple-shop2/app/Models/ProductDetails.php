@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class User extends Model
+class ProductDetails extends Model
 {
-    protected $fillable = ['email', 'otp'];
-
-    public function profile(): HasOne{
-        return $this->hasOne(CustomerProfile::class);
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
     }
-
 }
