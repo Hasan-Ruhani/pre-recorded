@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductWish extends Model
 {
-    protected $fillabel = ['product_id', 'user_id'];
+    protected $fillable = ['product_id', 'user_id'];
     public function product(): BelongsTo{
         return $this->belongsTo(Product::class);
     }
