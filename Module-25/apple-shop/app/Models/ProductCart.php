@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductCart extends Model
 {
-    protected $fillabel = ['user_id', 'product_id', 'color', 'size', 'qty', 'price'];
+    protected $fillable = ['user_id', 'product_id', 'color', 'size', 'qty', 'price'];
 
     public function product(): BelongsTo{
         return $this->belongsTo(Product::class);
