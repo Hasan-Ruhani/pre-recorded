@@ -69,9 +69,9 @@ Route::get('/CartList', [ProductController::class, 'CartList'])->middleware(Toke
 Route::get('/DeleteCartList/{product_id}', [ProductController::class, 'DeleteCartList'])->middleware(TokenAuthenticate::class);
 
 // Invoice and payment
-Route::get("/InvoiceCreate", [InvoiceController::class, 'InvoiceCreate'])->middleware(TokenAuthenticate::class);
-Route::get("/InvoiceList", [InvoiceController::class, 'InvoiceList'])->middleware(TokenAuthenticate::class);
-Route::get("/InvoiceProductList/{invoice_id}", [InvoiceController::class, 'InvoiceProductList'])->middleware(TokenAuthenticate::class);
+Route::get("/InvoiceCreate",[InvoiceController::class,'InvoiceCreate'])->middleware([TokenAuthenticate::class]);
+Route::get("/InvoiceList",[InvoiceController::class,'InvoiceList'])->middleware([TokenAuthenticate::class]);
+Route::get("/InvoiceProductList/{invoice_id}",[InvoiceController::class,'InvoiceProductList'])->middleware([TokenAuthenticate::class]);
 
 
 
