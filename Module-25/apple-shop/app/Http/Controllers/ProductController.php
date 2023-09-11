@@ -99,13 +99,6 @@ class ProductController extends Controller
     }
 
 
-
-
-
-
-
-
-
     public function CreateCartList(Request $request):JsonResponse{
         $user_id=$request->header('id');
         $product_id =$request->input('product_id');
@@ -124,7 +117,6 @@ class ProductController extends Controller
         }
         $totalPrice=$qty*$UnitPrice;
 
-
         $data=ProductCart::updateOrCreate(
             ['user_id' => $user_id,'product_id'=>$product_id],
             [
@@ -139,7 +131,6 @@ class ProductController extends Controller
 
         return ResponseHelper::Out('success',$data,200);
     }
-
 
     public function CartList(Request $request):JsonResponse{
         $user_id=$request->header('id');
