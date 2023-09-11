@@ -19,7 +19,7 @@ class ProfileController extends Controller
         );
         return ResponseHelper::Out('sucess', $data, 200);
     }
-
+    
     public function ReadProfile(Request $request): JsonResponse{
         $user_id = $request -> header('id');
         $data = CustomerProfile::where('user_id', $user_id) -> with('user') -> first();
