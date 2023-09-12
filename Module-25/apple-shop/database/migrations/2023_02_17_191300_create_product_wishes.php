@@ -6,20 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('product_wishes', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->restrictOnDelete()->restrictOnUpdate();
+
+            $table->foreign('product_id')->references('id')->on('products')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete()->cascadeOnUpdate();
-            
+            $table->foreign('user_id')->references('id')->on('users')
+                ->restrictOnDelete()
+                ->cascadeOnUpdate();
+
+
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

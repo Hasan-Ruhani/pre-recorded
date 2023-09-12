@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class InvoiceProduct extends Model
 {
-    protected $fillabel = ['invoice_id', 'product_id', 'qty', 'sale_price', 'user_id'];
+    protected $fillable = ['invoice_id', 'product_id', 'qty', 'sale_price','user_id'];
 
-    public function product(): BelongsTo{
+    public function product(): BelongsTo
+    {
         return $this->belongsTo(Product::class);
     }
 }
