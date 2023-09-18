@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeContorller;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
@@ -21,9 +22,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Home Page
+Route::get('/', [HomeContorller::class, 'HomePage']);
 
 // Brand List
 Route::get('/BrandList', [BrandController::class, 'BrnadList']);
