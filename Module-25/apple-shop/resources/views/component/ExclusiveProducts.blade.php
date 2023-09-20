@@ -66,8 +66,185 @@
 
 <script>
 
+    async function Popular(){
+        let res=await axios.get("/ListProductByRemark/popular");
+        $("#PopularItem").empty();
+        res.data['data'].forEach((item,i)=>{
+            let EachItem=`<div class="col-lg-3 col-md-4 col-6">
+                                <div class="product">
+                                    <div class="product_img">
+                                        <a href="#">
+                                            <img src="${item['image']}" alt="product_img9">
+                                        </a>
+                                        <div class="product_action_box">
+                                            <ul class="list_none pr_action_btn">
+                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                <li><a href="#"><i class="icon-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_title"><a href="#">${item['title']}</a></h6>
+                                        <div class="product_price">
+                                            <span class="price">$ ${item['price']}</span>
+                                        </div>
+                                        <div class="rating_wrap">
+                                            <div class="rating">
+                                                <div class="product_rate" style="width:${item['star']}%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+            $("#PopularItem").append(EachItem);
+        })
 
-   
+    }
+
+
+    async function New(){
+        let res = await axios.get("/ListProductByRemark/new")
+        $("#NewItem").empty();
+        res.data['data'].forEach((item, i) => {
+            let EachItem = `<div class="col-lg-3 col-md-4 col-6">
+                                <div class="product">
+                                    <div class="product_img">
+                                        <a href="#">
+                                            <img src="${item['image']}" alt="product_img9">
+                                        </a>
+                                        <div class="product_action_box">
+                                            <ul class="list_none pr_action_btn">
+                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                <li><a href="#"><i class="icon-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_title"><a href="#">${item['title']}</a></h6>
+                                        <div class="product_price">
+                                            <span class="price">$ ${item['price']}</span>
+                                        </div>
+                                        <div class="rating_wrap">
+                                            <div class="rating">
+                                                <div class="product_rate" style="width:${item['star']}%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+            $("#NewItem").append(EachItem);
+        });
+    }
+
+
+    async function Top(){
+        let res=await axios.get("/ListProductByRemark/top");
+        $("#TopItem").empty();
+        res.data['data'].forEach((item,i)=>{
+            let EachItem=`<div class="col-lg-3 col-md-4 col-6">
+                                <div class="product">
+                                    <div class="product_img">
+                                        <a href="#">
+                                            <img src="${item['image']}" alt="product_img9">
+                                        </a>
+                                        <div class="product_action_box">
+                                            <ul class="list_none pr_action_btn">
+                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                <li><a href="#"><i class="icon-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_title"><a href="#">${item['title']}</a></h6>
+                                        <div class="product_price">
+                                            <span class="price">$ ${item['price']}</span>
+                                        </div>
+                                        <div class="rating_wrap">
+                                            <div class="rating">
+                                                <div class="product_rate" style="width:${item['star']}%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+            $("#TopItem").append(EachItem);
+        })
+
+    }
+
+    async function Special(){
+        let res = await axios.get("/ListProductByRemark/special")
+        $("#SpecialItem").empty();
+        res.data['data'].forEach((item, i) => {
+            let EachItem = `<div class="col-lg-3 col-md-4 col-6">
+                                <div class="product">
+                                    <div class="product_img">
+                                        <a href="#">
+                                            <img src="${item['image']}" alt="product_img9">
+                                        </a>
+                                        <div class="product_action_box">
+                                            <ul class="list_none pr_action_btn">
+                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                <li><a href="#"><i class="icon-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_title"><a href="#">${item['title']}</a></h6>
+                                        <div class="product_price">
+                                            <span class="price">$ ${item['price']}</span>
+                                        </div>
+                                        <div class="rating_wrap">
+                                            <div class="rating">
+                                                <div class="product_rate" style="width:${item['star']}%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+            $("#SpecialItem").append(EachItem);
+        });
+    }
+
+
+    async function Trending(){
+        let res = await axios.get("/ListProductByRemark/trending")
+        $("#TrendingItem").empty();
+        res.data['data'].forEach((item, i) => {
+            let EachItem = `<div class="col-lg-3 col-md-4 col-6">
+                                <div class="product">
+                                    <div class="product_img">
+                                        <a href="#">
+                                            <img src="${item['image']}" alt="product_img9">
+                                        </a>
+                                        <div class="product_action_box">
+                                            <ul class="list_none pr_action_btn">
+                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li><a href="#" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                                <li><a href="#"><i class="icon-heart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product_info">
+                                        <h6 class="product_title"><a href="#">${item['title']}</a></h6>
+                                        <div class="product_price">
+                                            <span class="price">$ ${item['price']}</span>
+                                        </div>
+                                        <div class="rating_wrap">
+                                            <div class="rating">
+                                                <div class="product_rate" style="width:${item['star']}%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`
+            $("#TrendingItem").append(EachItem);
+        });
+    }
 
 </script>
 

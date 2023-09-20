@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    public function BrnadList(): JsonResponse{
+    public function BrandList(): JsonResponse{
 
          $data = Brand::all();
          return ResponseHelper::Out('success', $data, 200);

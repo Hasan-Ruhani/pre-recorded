@@ -28,9 +28,10 @@ use Illuminate\Support\Facades\Route;
 
 // Home Page
 Route::get('/', [HomeContorller::class, 'HomePage']);
+Route::get('/by-category', [CategoryController::class, 'ByCategoryPage']);
 
 // Brand List
-Route::get('/BrandList', [BrandController::class, 'BrnadList']);
+Route::get('/BrandList', [BrandController::class, 'BrandList']);
 
 // Category List
 Route::get('/CategoryList', [CategoryController::class, 'CategoryList']);

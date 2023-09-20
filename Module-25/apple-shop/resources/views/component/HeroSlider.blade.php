@@ -7,9 +7,11 @@
         <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next"><i class="ion-chevron-right"></i></a>
     </div>
 </div>
+
 <script>
+    
     async function Hero() {
-        let res = await axios.get("/ListProductSlider");
+        let res = await axios.get("/ListProductBySlider");
         $("#carouselSection").empty();
         res.data['data'].forEach((item,i)=>{
             let activeClass=''
