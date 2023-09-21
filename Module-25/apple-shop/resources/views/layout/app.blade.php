@@ -37,13 +37,13 @@
 </head>
 <body>
 
-<div class="preloader">
+{{-- <div class="preloader">
     <div class="lds-ellipsis">
         <span></span>
         <span></span>
         <span></span>
     </div>
-</div>
+</div> --}}
 
 <div>
     @yield('content')
