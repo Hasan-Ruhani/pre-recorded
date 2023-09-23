@@ -20,3 +20,5 @@ class BrandController extends Controller
          return ResponseHelper::Out('success', $data, 200);
     }
 }
+
+// end brnad controller
