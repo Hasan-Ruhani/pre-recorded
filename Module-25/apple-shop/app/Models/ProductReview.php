@@ -9,7 +9,7 @@ class ProductReview extends Model
 
     public function profile(): BelongsTo
     {
-        return $this->belongsTo(CustomerProfile::class,'customer_id');
+        return $this->belongsTo(CustomerProfile::class,'customer_id'); // get only customer_id
     }
     protected $fillable = ['description','rating','customer_id','product_id'];
 }
