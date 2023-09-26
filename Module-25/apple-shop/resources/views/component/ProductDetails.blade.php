@@ -44,7 +44,7 @@
 
                     </select>
 
-                    <hr/>
+                    <hr />
                     <div class="cart_extra">
                         <div class="cart-product-quantity">
                             <div class="quantity">
@@ -58,7 +58,7 @@
                             <a class="add_wishlist" onclick="AddToWishList()" href="#"><i class="icon-heart"></i></a>
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
 
                 </div>
             </div>
@@ -69,46 +69,6 @@
 
 
 <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     $('.plus').on('click', function() {
@@ -229,8 +189,6 @@
             }
         }
     }
-
-
 
 
 </script>
