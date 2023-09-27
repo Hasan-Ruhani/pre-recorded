@@ -7,7 +7,6 @@ use App\Models\Invoice;
 use App\Models\InvoiceProduct;
 use App\Models\ProductCart;
 use Exception;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -73,7 +72,7 @@ class InvoiceController extends Controller
         }
         catch (Exception $e) {
             DB::rollBack();
-            return ResponseHelper::Out('Fail',$e,200);
+            return ResponseHelper::Out('fail',$e,200);
         }
 
     }

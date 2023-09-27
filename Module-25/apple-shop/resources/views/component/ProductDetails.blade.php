@@ -161,12 +161,12 @@
                 });
                 $(".preloader").delay(90).fadeOut(100).addClass('loaded');
                 if(res.status===200){
-                    alert("Request Successful")
+                    alert("Add To Cart Successfull")
                 }
             }
 
         } catch (e) {
-            if (e.response.status === 401) {
+            if (e.response.status === 404) {
                 sessionStorage.setItem("last_location",window.location.href)
                 window.location.href = "/login"
             }
@@ -180,10 +180,10 @@
             let res = await axios.get("/CreateWishList/"+id);
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
             if(res.status===200){
-                alert("Request Successful")
+                alert("Wish List Add Successfull")
             }
         }catch (e) {
-            if(e.response.status===401){
+            if(e.response.status===404){
                 sessionStorage.setItem("last_location",window.location.href)
                 window.location.href="/login"
             }

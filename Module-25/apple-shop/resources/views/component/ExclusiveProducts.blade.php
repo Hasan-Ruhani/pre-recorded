@@ -155,7 +155,7 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li class="add-to-cart"><a href=""><i class="icon-basket-loaded"></i> Add To Cart</a></li>
                                                 
                                                 <li><a href="/details?id=${item['id']}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
                                                 

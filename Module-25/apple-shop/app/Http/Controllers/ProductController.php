@@ -17,6 +17,9 @@ class ProductController extends Controller
     public function Details(){
         return view('pages.details-page');
     }
+    public function WishList(){
+        return view('pages.wish-list-page');
+    }
 
     public function ListProductByCategory(Request $request):JsonResponse{
         $data=Product::where('category_id',$request->id)->with('brand','category')->get();

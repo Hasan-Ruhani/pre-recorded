@@ -6,6 +6,13 @@ use Illuminate\Http\JsonResponse;
 
 class BrandController extends Controller
 {
+
+    public function ByBrandPage()
+    {
+        return view('pages.product-by-brand');
+    }
+
+
     public function BrandList():JsonResponse
     {
         $data= Brand::all();
