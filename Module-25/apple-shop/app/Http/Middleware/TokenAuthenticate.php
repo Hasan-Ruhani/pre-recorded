@@ -2,10 +2,10 @@
 
     namespace App\Http\Middleware;
 
-use App\Helper\JWTToken;
-use Closure;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+    use App\Helper\JWTToken;
+    use Closure;
+    use Illuminate\Http\Request;
+    use Symfony\Component\HttpFoundation\Response;
 
     class TokenAuthenticate{
         public function handle(Request $request, Closure $next): Response{
