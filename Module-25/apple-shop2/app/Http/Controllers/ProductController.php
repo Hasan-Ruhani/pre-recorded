@@ -82,13 +82,6 @@ class ProductController extends Controller
 
     }
 
-
-
-
-
-
-
-
     public function ProductWishList(Request $request):JsonResponse{
         $user_id=$request->header('id');
         $data=ProductWish::where('user_id',$user_id)->with('product')->get();
