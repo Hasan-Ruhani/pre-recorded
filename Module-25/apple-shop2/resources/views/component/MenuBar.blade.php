@@ -14,7 +14,16 @@
                     <div class="text-center text-md-end">
                         <ul class="header_list">
                             <li><a href="/policy?type=about">About</a></li>
-                            <li><a href="">Account</a></li>
+
+                            @if(Cookie::get('token') !== null)
+                                <li><a href="{{url("/profile")}}"> <i class="linearicons-user"></i> Account</a></li>
+                                <li><a class="btn btn-danger btn-sm" href="{{url("/logout")}}"> Logout</a></li>
+                            @else
+                                <li><a class="btn btn-danger btn-sm" href="{{url("/login")}}">Login</a></li>
+                            @endif
+
+
+
                         </ul>
                     </div>
                 </div>
@@ -43,7 +52,7 @@
                             </div>
                         </li>
                         <li><a class="nav-link nav_item" href="{{url("/wish")}}"><i class="ti-heart"></i> Wish</a></li>
-                        <li><a class="nav-link nav_item" href="{{url("/")}}"><i class="linearicons-cart"></i> Cart </a></li>
+                        <li><a class="nav-link nav_item" href="{{url("/cart")}}"><i class="linearicons-cart"></i> Cart </a></li>
                         <li><a href="javascript:void(0);" class="nav-link search_trigger"><i class="linearicons-magnifier"></i> Search</a>
                             <div class="search_wrap">
                                 <span class="close-search"><i class="ion-ios-close-empty"></i></span>

@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cookie;
 
 class UserController extends Controller
 {
@@ -55,6 +56,7 @@ class UserController extends Controller
     }
 
     function UserLogout(){
-        return redirect('/userLoinPage') -> cookie('token'. '', -1);
+        // return redirect('/') -> cookie('token'. '', -1);          // its use for expired token time
+        return redirect('/') -> cookie(Cookie::forget('token'));     // its use for destroy token
     }
 }

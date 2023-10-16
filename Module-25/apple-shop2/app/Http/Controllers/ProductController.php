@@ -21,6 +21,12 @@ class ProductController extends Controller
     }
 
 
+    public function CartListPage()
+    {
+        return view('pages.cart-list-page');
+    }
+
+
     public function Details()
     {
         return view('pages.details-page');
@@ -82,6 +88,8 @@ class ProductController extends Controller
 
     }
 
+
+
     public function ProductWishList(Request $request):JsonResponse{
         $user_id=$request->header('id');
         $data=ProductWish::where('user_id',$user_id)->with('product')->get();
@@ -103,10 +111,6 @@ class ProductController extends Controller
         $data=ProductWish::where(['user_id' => $user_id,'product_id'=>$request->product_id])->delete();
         return ResponseHelper::Out('success',$data,200);
     }
-
-
-
-
 
     public function CreateCartList(Request $request):JsonResponse{
         $user_id=$request->header('id');
@@ -143,6 +147,7 @@ class ProductController extends Controller
     }
 
 
+
     public function CartList(Request $request):JsonResponse{
         $user_id=$request->header('id');
         $data=ProductCart::where('user_id',$user_id)->with('product')->get();
@@ -150,10 +155,12 @@ class ProductController extends Controller
     }
 
 
+
     public function DeleteCartList(Request $request):JsonResponse{
         $user_id=$request->header('id');
         $data=ProductCart::where('user_id','=',$user_id)->where('product_id','=',$request->product_id)->delete();
         return ResponseHelper::Out('success',$data,200);
     }
+
 
 }

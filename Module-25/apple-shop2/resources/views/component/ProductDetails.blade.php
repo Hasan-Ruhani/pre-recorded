@@ -59,7 +59,6 @@
                         </div>
                     </div>
                     <hr />
-
                 </div>
             </div>
         </div>
@@ -90,7 +89,6 @@
         let res = await axios.get("/ProductDetailsById/"+id);
         let Details=await res.data['data'];
 
-
         document.getElementById('product_img1').src=Details[0]['img1'];
         document.getElementById('img1').src=Details[0]['img1'];
         document.getElementById('img2').src=Details[0]['img2'];
@@ -99,12 +97,12 @@
 
         document.getElementById('p_title').innerText=Details[0]['product']['title'];
         document.getElementById('p_price').innerText=`$ ${Details[0]['product']['price']}`;
-        document.getElementById('p_des').innerText=Details[0]['des'];
+        document.getElementById('p_des').innerText=Details[0]['product']['short_des'];
+        document.getElementById('p_details').innerHTML=Details[0]['des'];
 
         // Product Size & Color
         let size= Details[0]['size'].split(',');
         let color=Details[0]['color'].split(',');
-
 
         let SizeOption=`<option value=''>Choose Size</option>`;
         $("#p_size").append(SizeOption);
@@ -113,13 +111,13 @@
             $("#p_size").append(option);
         })
 
+
         let ColorOption=`<option value=''>Choose Color</option>`;
         $("#p_color").append(ColorOption);
         color.forEach((item)=>{
             let option=`<option value='${item}'>${item}</option>`;
             $("#p_color").append(option);
         })
-
 
         $('#img1').on('click', function() {
             $('#product_img1').attr('src', Details[0]['img1']);
@@ -135,6 +133,27 @@
         });
     }
 
+
+
+    async function productReview(){
+        let res = await axios.get("/ListReviewByProduct/"+id);
+        let Details=await res.data['data'];
+
+        $("#reviewList").empty();
+
+        Details.forEach((item,i)=>{
+            let each= `<li class="list-group-item">
+                <h6>${item['profile']['cus_name']}</h6>
+                <p class="m-0 p-0">${item['description']}</p>
+                <div class="rating_wrap">
+                    <div class="rating">
+                        <div class="product_rate" style="width:${parseFloat(item['rating'])}%"></div>
+                    </div>
+                </div>
+            </li>`;
+           $("#reviewList").append(each);
+        })
+    }
 
     async function AddToCart() {
         try {
@@ -188,6 +207,27 @@
                 window.location.href="/login"
             }
         }
+    }
+
+
+    async function AddReview(){
+        let reviewText=document.getElementById('reviewTextID').value;
+        let reviewScore=document.getElementById('reviewScore').value;
+        if(reviewScore.length===0){
+            alert("Score Required !")
+        }
+        else if(reviewText.length===0){
+            alert("Review Required !")
+        }
+        else{
+            $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+            let postBody={description:reviewText, rating:reviewScore, product_id:id}
+            let res=await axios.post("/CreateProductReview",postBody);
+            $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+            await  productReview();
+        }
+
+
     }
 
 

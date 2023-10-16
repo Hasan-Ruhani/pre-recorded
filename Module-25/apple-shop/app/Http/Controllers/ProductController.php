@@ -21,6 +21,11 @@ class ProductController extends Controller
         return view('pages.wish-list-page');
     }
 
+    public function CartListPage()
+    {
+        return view('pages.cart-list-page');
+    }
+
     public function ListProductByCategory(Request $request):JsonResponse{
         $data=Product::where('category_id',$request->id)->with('brand','category')->get();
         return ResponseHelper::Out('success',$data,200);

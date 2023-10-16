@@ -13,6 +13,7 @@ use App\Http\Middleware\TokenAuthenticate;
 
 
 
+
 // Home Page
 Route::get('/', [HomeController::class, 'HomePage']);
 Route::get('/by-category', [CategoryController::class, 'ByCategoryPage']);
@@ -22,6 +23,16 @@ Route::get('/details', [ProductController::class, 'Details']);
 Route::get('/login', [UserController::class, 'LoginPage']);
 Route::get('/verify', [UserController::class, 'VerifyPage']);
 Route::get('/wish', [ProductController::class, 'WishList']);
+Route::get('/cart', [ProductController::class, 'CartListPage']);
+Route::get('/profile', [ProfileController::class, 'ProfilePage']);
+
+
+
+
+
+
+
+
 
 
 
@@ -41,6 +52,7 @@ Route::get('/ProductDetailsById/{id}', [ProductController::class, 'ProductDetail
 Route::get('/ListReviewByProduct/{product_id}', [ProductController::class, 'ListReviewByProduct']);
 //policy
 Route::get("/PolicyByType/{type}",[PolicyController::class,'PolicyByType']);
+
 
 
 // User Auth
