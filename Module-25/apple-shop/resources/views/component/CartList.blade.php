@@ -105,70 +105,15 @@
         }
     }
 
-</script>
-
-{{-- <script>
-    async function CartList(){
-        let res=await axios.get(`/CartList`);
-        $("#byList").empty();
-
-        res.data['data'].forEach((item,i)=>{
-            let EachItem=`<tr>
-                            <td class="product-thumbnail"><img src=${item['product']['image']} alt="product"></td>
-                            <td class="product-name" >${item['product']['title']} </td>
-                            <td class="product-quantity"> ${item['qty']} </td>
-                            <td class="product-subtotal">$ ${item['price']}</td>
-                            <td class="product-remove"><a class="remove" data-id="${item['product_id']}"><i class="ti-close"></i></a></td>
-                        </tr>`
-            $("#byList").append(EachItem);
-        })
-
-        await CartTotal(res.data['data']);
-
-        $(".remove").on('click',function () {
-            let id= $(this).data('id');
-            RemoveCartList(id);
-        })
-
-
-    }
-
-
-    async function CartTotal(data){
-        let Total=0;
-        data.forEach((item,i)=>{
-            Total=Total+parseFloat(item['price']);
-        })
-        $("#total").text(Total);
-    }
-
-
-
-   async function RemoveCartList(id){
-      $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
-        let res=await axios.get("/DeleteCartList/"+id);
-      $(".preloader").delay(90).fadeOut(100).addClass('loaded');
-        if(res.status===200) {
-            await CartList();
-        }
-        else{
-            alert("Request Fail")
-        }
-    }
-
-
     async function CheckOut(){
         $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
 
         $("#paymentList").empty();
-
-        let res=await axios.get("/InvoiceCreate");
+        let res = await axios.get("/InvoiceCreate")
 
         $(".preloader").delay(90).fadeOut(100).addClass('loaded');
 
-
-        if(res.status===200) {
-
+        if(res.status === 200){
             $("#paymentMethodModal").modal('show');
 
             res.data['data'][0]['paymentMethod'].forEach((item,i)=>{
@@ -178,16 +123,11 @@
                                 <td><a class="btn btn-danger btn-sm" href="${item['redirectGatewayURL']}">Pay</a></td>
                             </tr>`
                 $("#paymentList").append(EachItem);
-            })
-
+            });
         }
         else{
             alert("Request Fail");
         }
-
     }
 
-
-
-
-</script> --}}
+</script>
