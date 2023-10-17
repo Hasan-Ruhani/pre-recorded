@@ -57,6 +57,6 @@ class UserController extends Controller
 
     function UserLogout(){
         // return redirect('/') -> cookie('token'. '', -1);          // its use for expired token time
-        return redirect('/') -> cookie(Cookie::forget('token'));     // its use for destroy token
+        return redirect('/') -> cookie(Cookie::forget('token'));     // its use for destroy/clear token
     }
 }
