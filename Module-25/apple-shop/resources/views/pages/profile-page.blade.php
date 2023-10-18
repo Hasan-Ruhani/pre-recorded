@@ -31,8 +31,8 @@
     <script>
         (async () => {
             await OrderListRequest();
-            await productReview();
-            // $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+            await ProfileDetails();
+            $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         })()
     </script>
 
