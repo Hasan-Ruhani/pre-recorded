@@ -52,7 +52,7 @@
 </div>
 
 
-    {{-- <script>
+    <script>
 
         async function OrderListRequest(){
             let res =  await axios.get("/InvoiceList");
@@ -73,7 +73,7 @@
                     $("#OrderList").append(rows);
                 });
 
-                $(".more").on(function(){
+                $(".more").on('click', function(){
                     let id = $(this).data('id');
                     InvoiceProductList(id);
                 });
@@ -83,11 +83,10 @@
         async function InvoiceProductList(id){
             $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
 
-            let res = await axios.get("/InvoiceProductList" + id)
+            let res = await axios.get("/InvoiceProductList/" + id)
             $("#InvoiceProductModal").modal('show');
 
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
-
 
             $("#productList").empty();
             res.data.forEach((item, i) => {
@@ -101,12 +100,12 @@
 
         }
 
-    </script> --}}
+    </script>
 
 
 
 
-<script>
+{{-- <script>
 
 
 
@@ -145,10 +144,10 @@
 
    async function InvoiceProductList(id) {
 
-    //    $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+       $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
        let res= await axios.get("/InvoiceProductList/"+id);
        $("#InvoiceProductModal").modal('show');
-    //    $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+       $(".preloader").delay(90).fadeOut(100).addClass('loaded');
 
 
 
@@ -166,4 +165,4 @@
    }
 
 
-</script>
+</script> --}}
