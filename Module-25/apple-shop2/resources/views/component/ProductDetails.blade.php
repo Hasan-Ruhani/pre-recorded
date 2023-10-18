@@ -134,7 +134,7 @@
     }
 
 
-
+    // productReview();
     async function productReview(){
         let res = await axios.get("/ListReviewByProduct/"+id);
         let Details=await res.data['data'];
