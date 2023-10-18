@@ -22,7 +22,7 @@ class ProfileController extends Controller
             ['user_id' => $user_id],
             $request -> input()
         );
-        return ResponseHelper::Out('sucess', $data, 200);
+        return ResponseHelper::Out('success', $data, 200);
     }
     
     public function ReadProfile(Request $request): JsonResponse{
