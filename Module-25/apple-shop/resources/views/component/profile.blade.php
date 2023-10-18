@@ -138,9 +138,9 @@
        }
 
 
-        // $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
+        $(".preloader").delay(90).fadeIn(100).removeClass('loaded');
         let res = await axios.post("/CreateProfile",postBody);
-        // $(".preloader").delay(90).fadeOut(100).addClass('loaded');
+        $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         if(res.data['msg']==="success"){
             alert("Request Successful")
         }
