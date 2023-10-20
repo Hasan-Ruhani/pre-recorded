@@ -7,6 +7,7 @@
     <script>
         (async () => {
             await WishList();
+            await TopBrands();
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         })()
     </script>
