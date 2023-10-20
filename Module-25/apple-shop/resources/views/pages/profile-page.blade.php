@@ -32,6 +32,7 @@
         (async () => {
             await OrderListRequest();
             await ProfileDetails();
+            await TopBrands();
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         })()
     </script>
