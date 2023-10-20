@@ -8,6 +8,7 @@
     <script>
         (async () => {
             await CartList();
+            await TopBrands();
             $(".preloader").delay(90).fadeOut(100).addClass('loaded');
         })()
     </script>
