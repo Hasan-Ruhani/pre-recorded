@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\faqController;
 use App\Http\Controllers\HomeContorller;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PolicyController;
